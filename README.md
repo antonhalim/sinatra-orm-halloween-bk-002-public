@@ -50,15 +50,21 @@ Bonuses!
 2. Implement a new, fun feature! My suggestion is that a given house can
    be haunted, and when you trick-or-treat there, a ghost freaks you out
 and you drop all your candy!
+3. Write some code in your spec_helper that will reset your database to
+   a clean state for each test!
 
 # Resources and Hints
 
 Don't forget to run migrations after you make changes to your schema!
 
 I've created a script for you in the `db/` folder called `migrate.rb`.
-This script will help you run your migrations. To use it, call it from
+This script will help you run your migrations.
+
+To use it, call it from
 the command-line at the root of the project directory with an argument
 for the environment.
+
+remember: the test db and the development db will be different!
 
 Ex: `ruby db/migrate.rb test`
 
