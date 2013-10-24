@@ -10,4 +10,3 @@ group :test do
   gem 'guard-rspec'
   gem 'rack-test'
 end
-
