@@ -47,10 +47,11 @@ the result. Have fun!
 Bonuses!
 
 1. Implement the other bonus route specs
-2. Implement a new, fun feature! My suggestion is that a given house can
+2. Implement the routes and views that will allow you to add/edit houses
+3. Implement a new, fun feature! My suggestion is that a given house can
    be haunted, and when you trick-or-treat there, a ghost freaks you out
 and you drop all your candy!
-3. Write some code in your spec_helper that will reset your database to
+4. Write some code in your spec_helper that will reset your database to
    a clean state for each test!
 
 # Resources and Hints
