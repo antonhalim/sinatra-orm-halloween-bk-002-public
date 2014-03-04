@@ -37,7 +37,7 @@ the result. Have fun!
 
 1. Work from the model specs first. Implement them one at a time.
 2. Create migrations as needed. There are already examples in
-   db/migrations. Add yours there.
+   db/migrate. Add yours there.
 3. Work on the non-bonus route specs next.
 4. Edit config.ru and get your site running
 5. Complete `db/seed.rb` to populate your site with houses and candy!
@@ -52,7 +52,7 @@ Bonuses!
    be haunted, and when you trick-or-treat there, a ghost freaks you out
 and you drop all your candy!
 4. Write some code in your spec_helper that will reset your database to
-   a clean state for each test!
+   a clean state for each test! (feel free to use DatabaseCleaner Gem)
 
 # Resources and Hints
 
@@ -72,9 +72,6 @@ Ex: `ruby db/migrate.rb test`
 Look in `config/environment.rb` to see more of what's happening with the
 environment
 
-[Avi's TODO for Sequel](https://github.com/flatiron-school/sequel-orms-ruby-003)
-[Sequel Gem Documentation](https://github.com/jeremyevans/sequel)
-
 Refer back to the Sinatra docs for session info when you need it.
 
 You should not need sessions in your tests. Remember you can set up any
@@ -83,3 +80,5 @@ data you need in any test.
 Don't forget to create methods to do work that you have to keep
 repeating! Refactor as you go if you find yourself doing the same things
 over and over.
+
+This lab is also autotest enabled with guard, so you can use the `bundle exec guard` command to start your suite and autorun it.

@@ -1,8 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-gem 'sequel'
+gem 'activerecord', :require => 'active_record'
 gem 'sqlite3'
+gem 'tux'
+gem 'shotgun'
+gem 'pry'
 
 group :test do
   gem 'rspec'
