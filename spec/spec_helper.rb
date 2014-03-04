@@ -4,7 +4,7 @@ require_relative '../config/environment'
 require 'rack/test'
 
 if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
-  ActiveRecord::Migrator.migrate('db/migrate')
+  raise 'Migrations are pending run `rake db:migrate SINATRA_ENV=test` to resolve the issue.'
 end
 
 RSpec.configure do |config|
