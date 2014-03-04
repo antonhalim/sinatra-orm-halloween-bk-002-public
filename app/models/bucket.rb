@@ -1,3 +1,2 @@
-class Bucket < Sequel::Model
-
+class Bucket < ActiveRecord::Base
 end

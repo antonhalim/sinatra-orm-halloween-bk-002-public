@@ -1,1 +1,5 @@
-# TODO: implement the code necessary to rack this up and make it run
+require_relative './config/environment'
+
+use HousesController
+use RootController
+run HalloweenController

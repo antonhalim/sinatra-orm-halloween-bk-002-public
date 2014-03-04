@@ -1,12 +1,15 @@
-require_relative '../spec_helper.rb'
+require 'spec_helper'
 
-describe "bucket" do
-  it "belongs to a kid"
+describe "Bucket" do
+  it "belongs to a kid" do
+    pending
+  end
+
   it "can contain candy" do
     pending
-    # think of how you'll implement this. You won't directly relate bucket to candy,
-    # you'll need to use what is called a many_to_many relationship. Read the Sequel
-    # docs for more information
   end
-  it "has a count of its candy"
+
+  it "has a count of its candy" do
+    pending
+  end
 end

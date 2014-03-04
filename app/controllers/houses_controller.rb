@@ -1,0 +1,2 @@
+class HousesController < HalloweenController
+end

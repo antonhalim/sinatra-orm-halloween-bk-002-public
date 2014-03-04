@@ -1,8 +1,2 @@
-Sequel.migration do
-  change do
-    create_table(:kids) do
-      primary_key :id
-      String :name
-    end
-  end
+class CreateKids < ActiveRecord::Migration
 end

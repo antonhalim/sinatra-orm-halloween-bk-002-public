@@ -1,7 +1,15 @@
-require_relative '../spec_helper.rb'
+require 'spec_helper'
 
 describe "Candy" do
-  it "has a name"
-  it "has a number of pieces per package"
-  it "has a size"
+  it "has a name" do
+    pending
+  end
+
+  it "has a number of pieces per package" do
+    pending
+  end
+
+  it "has a size" do
+    pending
+  end
 end

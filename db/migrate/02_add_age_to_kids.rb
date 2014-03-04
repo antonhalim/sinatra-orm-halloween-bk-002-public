@@ -1,5 +1,2 @@
-Sequel.migration do
-  change do
-    add_column :kids, :age, Integer
-  end
+class AddAgeToKids < ActiveRecord::Migration
 end
