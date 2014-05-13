@@ -1,6 +1,6 @@
 ---
-tags: orm, activerecord, sinatra, rspec
-languages: ruby
+  tags: orm, activerecord, sinatra, rspec
+  languages: ruby
   resources: 2
 ---
 
