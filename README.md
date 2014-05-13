@@ -1,6 +1,7 @@
 ---
 tags: orm, activerecord, sinatra, rspec
 languages: ruby
+  resources: 2
 ---
 
 # Halloween Candy!
@@ -63,3 +64,7 @@ data you need in any test.
 Don't forget to create methods to do work that you have to keep
 repeating! Refactor as you go if you find yourself doing the same things
 over and over.
+
+## Resources
+* [Sinatra Up and Running](http://books.flatironschool.com/books/101) - [Chapter 2 Fundamentals](http://books.flatironschool.com/books/101), page 29
+* [Flatiron School Curriculum](https://github.com/flatiron-school-curriculum/) - [Blog on Sinatra](https://github.com/flatiron-school-curriculum/sinatra-blog)
