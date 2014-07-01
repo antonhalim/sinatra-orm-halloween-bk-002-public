@@ -1,5 +1,11 @@
 <h1>House Profile Page</h1>
 
-<h3><%= @house.address %></h3>
+<p><%= @house.address %></p>
 
+<h3>Candy List</h3>
+<ul>
+<% @house.candies.each do |candy| %>
+  <li><%= candy.name %></li>
+<% end %>
+</ul>
 <a href="/houses"><button>Back to House Index</button></a>
