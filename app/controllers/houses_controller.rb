@@ -7,7 +7,6 @@ class HousesController < HalloweenController
   get '/houses/:id' do
     @house = House.find_by(:id => params[:id])
     @unclaimed_candies = @house.candies.select{|c| c if !c.bucket_id}
-    binding.pry
     @kids = Kid.all
     erb :'houses/show'
   end
