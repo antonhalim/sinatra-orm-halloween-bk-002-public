@@ -11,9 +11,7 @@ describe "Kid" do
 
   it "has an age" do
     kid.age = 14
-    kid.save
-    k = Kid.find(id: kid.id)
-    expect(k.age).to eq(kid.age)
+    expect(kid.age).to eq(14)
   end
 
   it "has a bucket" do
