@@ -1,5 +1,3 @@
-# TODO: write code in here to pre-load the database with houses and candy
-
 # create kids
 charlie = Kid.create(:name => "Charlie", :age => 14)
 charlie.bucket = Bucket.new
@@ -21,5 +19,5 @@ sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
 # assign candy
 charlie.bucket.candies << [skittles, milkyway]
 lucy.bucket.candies << redhots
-mansion.candies << [twix, mints]
-cottage.candies << sourpatch
+mansion.candies << [twix, mints, milkyway]
+cottage.candies << [sourpatch, skittles]
