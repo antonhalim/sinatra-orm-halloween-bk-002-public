@@ -12,7 +12,7 @@
 
 <h3>Select a your name and hit trick-or-treat to get some candy.</h3>
 <form action="/houses/<%= @house.id %>/trick-or-treat" method="post">
-  <select name="kids">
+  <select name="kid_id">
   <% @kids.each do |kid| %>
     <option value=<%= kid.id %> ><%= kid.name %></option>
   <% end %>

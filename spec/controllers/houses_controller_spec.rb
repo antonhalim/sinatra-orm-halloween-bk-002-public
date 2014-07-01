@@ -23,6 +23,7 @@ describe "HousesController" do
       expect(last_response.body).to include("123 S. Seaside Ln.")
       expect(last_response.body).to include("1019 Expensive Ave.")
       expect(last_response.body).to include(@twix.name)
+      expect(last_response.body).to include(@skittles.name)
     end
   end
 
