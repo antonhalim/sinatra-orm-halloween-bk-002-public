@@ -6,6 +6,7 @@ class HousesController < HalloweenController
 
   get '/houses/:id' do
     @house = House.find_by(:id => params[:id])
+    @kids = Kid.all
     erb :'houses/show'
   end
 
@@ -13,7 +14,7 @@ class HousesController < HalloweenController
     @house = House.find_by(:id => params[:id])
     @kid = Kid.find_by(:id => params[:kid_id])
     @house.give_candy(@kid)
-    
+
     erb :'houses/show'
   end
 end
