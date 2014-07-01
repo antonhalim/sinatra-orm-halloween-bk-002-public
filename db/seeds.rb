@@ -16,8 +16,10 @@ twix = Candy.create(:name => "Twix", :size => 2, :pieces => 2)
 mints = Candy.create(:name => "Junior Mints", :size => 4, :pieces => 20)
 sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
 
-# assign candy
+# assign candy to kids
 charlie.bucket.candies << [skittles, milkyway]
 lucy.bucket.candies << redhots
+
+# assign candy to houses
 mansion.candies << [twix, mints, milkyway]
 cottage.candies << [sourpatch, skittles]
