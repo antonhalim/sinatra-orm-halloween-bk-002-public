@@ -41,6 +41,17 @@ describe "KidsController" do
     it "responds with a 200 status code" do
       expect(last_response).to be_ok
     end
+    it "displays the kid's name and age" do
+      expect(last_response.body).to include("Mindy Kaling")
+      expect(last_response.body).to include("12")
+    end
+    it "counts the candy in the kid's bucket" do 
+      expect(last_response.body).to include("<h3>Candy Count: 2</h3>")
+    end
+    it "lists the candies that is in the kid's bucket" do
+      expect(last_response.body).to include("<li>Name: #{@sourpatch.name}</li>")
+      expect(last_response.body).to include("<li>Name: #{@milkyway.name}</li>")
+    end
     it "should allow kid to pig out" do
       expect(last_response.body).to include("<form action=\"/kids/#{@mindy.id}/pig-out\" method=\"POST\"")
     end
@@ -73,16 +84,16 @@ describe "KidsController" do
       expect(last_request.url).to eq("http://example.org/kids/#{@mindy.id}")
     end
     it "affects the candy displayed on the kids show page" do
-      expect(last_request.body).to include("<h3>Candy Count: 0</h3>")
+      expect(last_response.body).to include("<h3>Candy Count: 0</h3>")
     end
     it "does not display eaten candy" do
-      expect(last_request.url).to_not include(@sourpatch.name)
-      expect(last_request.url).to_not include(@milkyway.name)
-      expect(last_request.url).to_not include(@redhots.name)
-      expect(last_request.url).to_not include(@reeses.name)
+      expect(last_response.body).to_not include(@sourpatch.name)
+      expect(last_response.body).to_not include(@milkyway.name)
+      expect(last_response.body).to_not include(@redhots.name)
+      expect(last_response.body).to_not include(@reeses.name)
     end
-
-    xit "displays mood based on candy consumption" do 
+    it "displays mood based on candy consumption" do 
+      expect(last_response.body).to include("Sick")
     end
   end
 end
