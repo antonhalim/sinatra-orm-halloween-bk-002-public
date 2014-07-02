@@ -1,0 +1,3 @@
+class KidsController < HalloweenController
+
+end

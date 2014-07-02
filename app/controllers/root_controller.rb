@@ -1,2 +1,3 @@
 class RootController < HalloweenController
+
 end
