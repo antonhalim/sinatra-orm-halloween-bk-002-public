@@ -87,12 +87,11 @@ describe "HousesController" do
     end
   end
 
-  # BONUS: Implement the forms required to do the following:
-  xit "write test for adding house and make it pass" do
+  xit "bonus: write test for adding house and make it pass" do
     pending
   end
 
-  xit "write test for editing house and make it pass" do
+  xit "bonus: write test for editing house and make it pass" do
     pending
   end
 end

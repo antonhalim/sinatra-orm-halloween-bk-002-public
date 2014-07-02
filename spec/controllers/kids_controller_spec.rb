@@ -29,6 +29,7 @@ describe "KidsController" do
       expect(last_response.body).to include("</form>")
     end
   end
+
   describe "GET /kids/:id" do 
     before do 
       @sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
@@ -55,7 +56,22 @@ describe "KidsController" do
     it "should allow kid to pig out" do
       expect(last_response.body).to include("<form action=\"/kids/#{@mindy.id}/pig-out\" method=\"POST\"")
     end
+    it "does displays a paragraph area for feeling" do
+      expect(last_response.body).to include("<p>Feeling:")
+    end
   end
+
+  describe "GET /kids/:id" do 
+    before do 
+      @mindy = Kid.create(:name => "Mindy Kaling", :age => 12, :feeling => "Sick")
+      @mindy.bucket = Bucket.create
+      get "/kids/#{@mindy.id}"
+    end
+    it "displays feeling if it is not nil" do
+      expect(last_response.body).to include("<p>Feeling: Sick</p>")
+    end
+  end
+
   describe "POST /kids" do 
     before do
       post "/kids", {:'kid[name]' => "Tina Fey", :'kid[age]' => 9}
@@ -92,8 +108,8 @@ describe "KidsController" do
       expect(last_response.body).to_not include(@redhots.name)
       expect(last_response.body).to_not include(@reeses.name)
     end
-    it "displays mood based on candy consumption" do 
-      expect(last_response.body).to include("Sick")
+    it "changes feeling based on candy consumption" do 
+      expect(last_response.body).to include("<p>Feeling: Sick</p>")
     end
   end
 end

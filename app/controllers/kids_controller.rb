@@ -23,7 +23,8 @@ class KidsController < HalloweenController
 
   post '/kids/:id/pig-out' do 
     @kid = Kid.find_by(:id => params[:id])
-    @message = @kid.pig_out(params[:consumption].to_i)
+    @kid.pig_out(params[:consumption].to_i)
     redirect "/kids/#{@kid.id}"
   end
+
 end

@@ -8,7 +8,12 @@ class Kid < ActiveRecord::Base
       self.bucket.candies[0...consumption].each do |candy|
         candy.destroy
       end
-      consumption > 3 ? "Sick" : "Happy"
+      if consumption > 3
+        self.feeling = "Sick"
+      else
+        self.feeling = "Happy"
+      end
+      self.save
     else
       "You can't eat more candy than you have!"
     end

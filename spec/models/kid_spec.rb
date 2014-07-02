@@ -14,6 +14,11 @@ describe "Kid" do
     expect(kid.age).to eq(14)
   end
 
+  it "has an feeling" do
+    kid.feeling = "sick"
+    expect(kid.feeling).to eq("sick")
+  end
+
   it "has a bucket" do
     kid.save
     kid.bucket = Bucket.new
@@ -35,12 +40,14 @@ describe "Kid" do
     end
 
     it "eats its candy" do
-      expect(@kid.pig_out(1)).to eq("Happy")
+      @kid.pig_out(1)
+      expect(@kid.feeling).to eq("Happy")
       expect(@kid.bucket.candies.count).to eq(4)
     end
 
     it "gets sick if it eats too much" do
-      expect(@kid.pig_out(4)).to eq("Sick")
+      @kid.pig_out(4)
+      expect(@kid.feeling).to eq("Sick")
       expect(@kid.bucket.candies.count).to eq(1)
     end
   end

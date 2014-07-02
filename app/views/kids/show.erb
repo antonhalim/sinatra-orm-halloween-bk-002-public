@@ -22,10 +22,7 @@
   <input type="submit" value="Eat!">
 </form>
 
-<% if defined?(@message) %>
-  <p><%= @message %></p> 
-<% end %>
-
+<p>Feeling: <%= @kid.feeling %></p>
 
 <a href="/houses"><button>Go Trick or Treating!</button></a>
 
