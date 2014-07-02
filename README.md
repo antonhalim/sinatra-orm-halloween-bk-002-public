@@ -1,5 +1,5 @@
 ---
-  tags: orm, activerecord, sinatra, rspec
+  tags: orm, activerecord, sinatra
   languages: ruby
   resources: 2
 ---

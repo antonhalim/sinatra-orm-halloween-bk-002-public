@@ -1,0 +1,12 @@
+<h1>All Houses</h1>
+
+<ol>
+  <% @houses.each do |house| %>
+    <li><a href="/houses/<%= house.id %>"><%= house.address %></a></li>
+    <ul>
+    <% house.unclaimed_candies.each do |candy| %>
+      <li><%= candy.name %></li>
+    <% end %>
+    </ul>
+  <% end %>
+</ol>

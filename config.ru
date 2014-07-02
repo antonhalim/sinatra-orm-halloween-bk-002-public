@@ -5,5 +5,6 @@ if defined?(ActiveRecord::Migrator) && ActiveRecord::Migrator.needs_migration?
 end
 
 use HousesController
+use KidsController
 use RootController
 run HalloweenController
