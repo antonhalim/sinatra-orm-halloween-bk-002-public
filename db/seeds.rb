@@ -37,6 +37,3 @@ split_level.candies << [snickers, almondjoy, snocaps, take5, kitkat]
 charlie.bucket.candies << [twix, sourpatch, snickers]
 lucy.bucket.candies << [mints, skittles]
 patty.bucket.candies << almondjoy
-
-
-

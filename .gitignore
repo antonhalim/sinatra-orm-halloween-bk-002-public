@@ -1,1 +1,3 @@
-*.db
+db/schema.rb
+db/halloween_development.sqlite
+db/halloween_test.sqlite
