@@ -64,12 +64,35 @@ describe "HousesController" do
       expect(last_response.body).to include("Tina Fey")
     end
   end
+
+  describe "POST /houses/:id/trick-or-treat" do
+    before do
+      @cottage = House.create(address: "123 S. Seaside Ln.")
+      @redhots = Candy.create(:name => "Redhots", :size => 2, :pieces => 10)
+      @cottage.candies << @redhots
+      @tina = Kid.create(:name => "Tina Fey", :age => 12)
+      @tina.bucket = Bucket.create
+      post "/houses/#{@cottage.id}/trick-or-treat", {:kid_id => @tina.id}
+      follow_redirect!
+    end
+    it "redirects to the house's show page" do
+      expect(last_request.url).to eq("http://example.org/houses/#{@cottage.id}")
+    end
+    it "removes a candy from the house's show page after it was given to a kid" do
+      expect(last_response.body).to_not include(@redhots.name)
+    end
+    it "assigns a kid to the candy that was distributed" do
+      expect(@tina.bucket.candies.count).to eq(1)
+      expect(@tina.bucket.candies).to include(@redhots)
+    end
+  end
+
   # BONUS: Implement the forms required to do the following:
-  xit "allows you to add a house" do
+  xit "write test for adding house and make it pass" do
     pending
   end
 
-  xit "allows you to edit a house" do
+  xit "write test for editing house and make it pass" do
     pending
   end
 end
