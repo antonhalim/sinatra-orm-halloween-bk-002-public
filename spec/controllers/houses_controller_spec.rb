@@ -11,6 +11,9 @@ describe "HousesController" do
       @twix = Candy.create(:name => "Twix", :size => 2, :pieces => 2)
       @mints = Candy.create(:name => "Junior Mints", :size => 4, :pieces => 20)
       @sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
+      @mindy = Kid.create(:name => "Mindy Kaling", :age => 12)
+      @mindy.bucket = Bucket.create
+      @mindy.bucket.candies << @sourpatch
       @cottage.candies << [@redhots, @twix, @mints, @sourpatch] 
       @mansion.candies << [@skittles, @milkyway]
       get '/houses'
@@ -18,12 +21,21 @@ describe "HousesController" do
     it "responds with a 200 status code" do
       expect(last_response).to be_ok
     end
-    it "renders the houses index template with candies" do
+    it "renders the houses index template with houses" do
+      expect(last_response.body).to include("<h1>All Houses</h1>")
+      expect(last_response.body).to include("123 S. Seaside Ln.")
+      expect(last_response.body).to include("1019 Expensive Ave.")
+    end
+    it "displays the unclaimed candy for each houses" do
       expect(last_response.body).to include("<h1>All Houses</h1>")
       expect(last_response.body).to include("123 S. Seaside Ln.")
       expect(last_response.body).to include("1019 Expensive Ave.")
       expect(last_response.body).to include(@twix.name)
       expect(last_response.body).to include(@skittles.name)
+      expect(last_response.body).to_not include(@sourpatch.name)
+    end
+    it "does not display claimed candy" do
+      expect(last_response.body).to_not include(@sourpatch.name)
     end
   end
 
