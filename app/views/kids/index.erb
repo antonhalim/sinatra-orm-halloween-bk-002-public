@@ -1,5 +1,7 @@
 <h1>All Kids</h1>
 
+<ul>
 <% @kids.each do |kid| %>
-  <a href="/kids/<%= kid.id %>"><%= kid.name %></a>
+  <li><a href="/kids/<%= kid.id %>"><%= kid.name %></a></li>
 <% end %>
+</ul>

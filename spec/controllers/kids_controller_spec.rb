@@ -13,8 +13,8 @@ describe "KidsController" do
       expect(last_response).to be_ok
     end
     it "lists all the kids with links to their show pages" do
-      expect(last_response.body).to include("<li><a href=\"kids/#{@mindy.id}\">#{@mindy.name}</a></li>")
-      expect(last_response.body).to include("<li><a href=\"kids/#{@tina.id}\">#{@tina.name}</a></li>")
+      expect(last_response.body).to include("<li><a href=\"/kids/#{@mindy.id}\">#{@mindy.name}</a></li>")
+      expect(last_response.body).to include("<li><a href=\"/kids/#{@tina.id}\">#{@tina.name}</a></li>")
     end
   end
   describe "GET /kids/new" do 
@@ -24,8 +24,8 @@ describe "KidsController" do
     it "responds with a 200 status code" do
       expect(last_response).to be_ok
     end
-    it "should render a form for a new kid"
-      expect(last_response.body).to include("<form action=\"kids\" method=\"post\"")
+    it "should render a form for a new kid" do
+      expect(last_response.body).to include("<form action=\"/kids\" method=\"POST\"")
       expect(last_response.body).to include("</form>")
     end
   end
@@ -42,17 +42,7 @@ describe "KidsController" do
       expect(last_response).to be_ok
     end
     it "should allow kid to pig out" do
-      expect(last_response.body).to include("<form action=\"/kids/#{@mindy.id}/pig-out\" method=\"post\"")
-    end
-  end
-  describe "POST /kids" do 
-    before do
-      post "/kids", {:'kid[name]' => "Tina Fey", :'kid[age]' => 9}
-      @kid = Kid.find_by(:name => "Tina Fey")
-      follow_redirect!  
-    end
-    it "redirects to the kids's show page" do
-      expect(last_request.url).to eq("http://example.org/kids/#{@kid.id}")
+      expect(last_response.body).to include("<form action=\"/kids/#{@mindy.id}/pig-out\" method=\"POST\"")
     end
   end
   describe "POST /kids" do 
@@ -75,15 +65,15 @@ describe "KidsController" do
       # kid and bucket
       @mindy = Kid.create(:name => "Mindy Kaling", :age => 12)
       @mindy.bucket = Bucket.create
-      @mindy.bucket << [@sourpatch, @milkyway, @redhots, @reeses]
-      post "/kids/{@mindy.id}/pig-out", {:consumption => 4}
+      @mindy.bucket.candies << [@sourpatch, @milkyway, @redhots, @reeses]
+      post "/kids/#{@mindy.id}/pig-out", {:consumption => 4}
       follow_redirect!  
     end
     it "redirects to the kids's show page" do
       expect(last_request.url).to eq("http://example.org/kids/#{@mindy.id}")
     end
     it "affects the candy displayed on the kids show page" do
-      expect(last_request.url).to include("<h2>Candy Count: 0</h2>")
+      expect(last_request.body).to include("<h3>Candy Count: 0</h3>")
     end
     it "does not display eaten candy" do
       expect(last_request.url).to_not include(@sourpatch.name)
@@ -91,31 +81,5 @@ describe "KidsController" do
       expect(last_request.url).to_not include(@redhots.name)
       expect(last_request.url).to_not include(@reeses.name)
     end
-  end
-  # BONUS:
-  # The site should behave like this, but the bonus is implementing the specs
-  xit "keeps track of your bucket" do
-    # GET '/bucket'
-    # It should show the contents of your bucket
-    
-    # HINT: Set up kid and bucket data in this test and then 
-    # go to the bucket id path, so that your test doesn't
-    # have to be concerned with sessions. It looks something like this:
-    # (this will depend on your model implementation)
-    #
-    # kid = Kid.new
-    # kid.bucket = Bucket.new
-    # house = House.new
-    # house.trick_or_treat(kid)
-    # get '/bucket/bucket.id'
-
-    pending
-  end
-
-  xit "lets you eat your candy" do
-    # Create a route that you can link to that will show how much candy you ate
-    # and the result (are you happy or sick?)
-    
-    pending
   end
 end
