@@ -9,4 +9,10 @@ class House < ActiveRecord::Base
       "You're too old to trick-or-treat."
     end
   end
+
+  def unclaimed_candies
+    self.candies.select do |c|
+      c if !c.bucket_id
+    end
+  end
 end

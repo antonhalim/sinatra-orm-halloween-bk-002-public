@@ -29,4 +29,17 @@ describe "House" do
     expect(avi.bucket.candies.count).to eq(0)
     expect(@cottage.candies[0].bucket_id).to eq(nil)
   end
+
+  it "can give candy to a kid" do
+    expect(@kid.bucket.candies.count).to eq(0)
+    @cottage.give_candy(@kid)
+    expect(@kid.bucket.candies.count).to eq(1)
+    expect(@kid.bucket.candies).to include(@skittles || @milkyway || @redhots)
+  end
+
+  it "knows what candy hasn't been distributed yet" do
+    expect(@cottage.unclaimed_candies.count).to eq(3)
+    @cottage.give_candy(@kid)
+    expect(@cottage.unclaimed_candies.count).to eq(2)
+  end
 end
