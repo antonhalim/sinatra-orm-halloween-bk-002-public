@@ -81,5 +81,8 @@ describe "KidsController" do
       expect(last_request.url).to_not include(@redhots.name)
       expect(last_request.url).to_not include(@reeses.name)
     end
+
+    xit "displays mood based on candy consumption" do 
+    end
   end
 end
