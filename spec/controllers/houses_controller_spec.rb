@@ -46,7 +46,8 @@ describe "HousesController" do
       @twix = Candy.create(:name => "Twix", :size => 2, :pieces => 2)
       @mints = Candy.create(:name => "Junior Mints", :size => 4, :pieces => 20)
       @sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
-      @cottage.candies << [@redhots, @twix, @mints, @sourpatch] 
+      @cottage.candies << [@redhots, @twix, @mints, @sourpatch]
+      @kid = Kid.create(:name => "Tina Fey", :age => 12)
       get "/houses/#{@cottage.id}"
     end
     it "allows you to see a house" do
@@ -57,12 +58,12 @@ describe "HousesController" do
       expect(last_response.body).to include(@sourpatch.name)
       expect(last_response.body).to include(@redhots.name)
     end
-  end
 
-  xit "allows you to trick-or-treat the house" do
-    pending
+    it "displays a form that allows kids to trick-or-treat the house" do
+      expect(last_response.body).to include("<form action=\"/houses/#{@cottage.id}/trick-or-treat\"")
+      expect(last_response.body).to include("Tina Fey")
+    end
   end
-
   # BONUS: Implement the forms required to do the following:
   xit "allows you to add a house" do
     pending
