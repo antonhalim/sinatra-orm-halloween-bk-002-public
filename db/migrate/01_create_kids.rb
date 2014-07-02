@@ -3,6 +3,7 @@ class CreateKids < ActiveRecord::Migration
     create_table :kids do |t|
       t.string :name
       t.integer :age
+      t.string :feeling
       t.timestamps
     end
   end
