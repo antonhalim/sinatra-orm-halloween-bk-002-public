@@ -1,12 +1,17 @@
 require 'spec_helper'
 
 describe "KidsController" do
-  it "asks for your name and age and makes you a kid with a bucket" do
-    # You'll need to use a form, post to a route and use sessions here to
-    # keep track of the visitor and their bucket
-    # POST '/start'
 
-    pending
+  describe "GET /kids" do 
+    
+  end
+  describe "GET /kids/new" do 
+  end
+
+  describe "POST /kids" do 
+  end
+
+  describe "GET /kids/:id" do 
   end
 
   # BONUS:

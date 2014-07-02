@@ -1,0 +1,17 @@
+<h1>Name: <%= @kid.name %></h1>
+<h2>Age: <%= @kid.age %></h2>
+
+<h2>Candy Inventory</h2>
+<h3>Candy Count: <%= @kid.bucket.candies.count %></h3>
+<ul>
+<% @kid.bucket.candies.each do |candy| %>
+    <li>Name: <%= candy.name %></li>
+        <ul>
+          <li>Size: <%= candy.size %></li>
+          <li>Pieces: <%= candy.pieces %></li>
+        </ul>
+<% end %>
+</ul>
+
+
+<a href="/houses"><button>Go Trick or Treating!</button></a>

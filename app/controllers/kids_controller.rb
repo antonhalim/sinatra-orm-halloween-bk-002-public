@@ -1,12 +1,12 @@
 class KidsController < HalloweenController
   get '/kids/new' do
     @kid = Kid.new
-    @kid.bucket = Bucket.new
     erb :'kids/new'
   end
 
   post '/kids' do
     @kid = Kid.create(params[:kid])
+    @kid.bucket = Bucket.new
     redirect "/kids/#{@kid.id}"
   end
 
