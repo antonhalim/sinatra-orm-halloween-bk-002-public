@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 4) do
   create_table "kids", force: true do |t|
     t.string   "name"
     t.integer  "age"
+    t.string   "feeling"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
