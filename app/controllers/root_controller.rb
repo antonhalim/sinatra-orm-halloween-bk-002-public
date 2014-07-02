@@ -1,5 +1,5 @@
 class RootController < HalloweenController
   get '/' do 
-    redirect '/houses'
+    erb :'root/index'
   end
 end
