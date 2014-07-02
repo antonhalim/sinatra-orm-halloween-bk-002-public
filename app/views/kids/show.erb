@@ -3,15 +3,29 @@
 
 <h2>Candy Inventory</h2>
 <h3>Candy Count: <%= @kid.bucket.candies.count %></h3>
-<ul>
-<% @kid.bucket.candies.each do |candy| %>
-    <li>Name: <%= candy.name %></li>
-        <ul>
-          <li>Size: <%= candy.size %></li>
-          <li>Pieces: <%= candy.pieces %></li>
-        </ul>
+<% if !@kid.bucket.candies.nil? %>
+  <ul>
+  <% @kid.bucket.candies.each do |candy| %>
+      <li>Name: <%= candy.name %></li>
+          <ul>
+            <li>Size: <%= candy.size %></li>
+            <li>Pieces: <%= candy.pieces %></li>
+          </ul>
+  <% end %>
+  </ul>
 <% end %>
-</ul>
+
+<h1>Eat Candy!</h1>
+<form action="/kids/<%= @kid.id %>/pig-out" method="POST">
+  <label for="consumption">Amount</label>
+  <input type="number" name="consumption">
+  <input type="submit" value="Eat!">
+</form>
+
+<% if defined?(@message) %>
+  <p><%= @message %></p> 
+<% end %>
 
 
 <a href="/houses"><button>Go Trick or Treating!</button></a>
+
