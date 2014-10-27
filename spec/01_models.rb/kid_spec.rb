@@ -26,7 +26,7 @@ describe "Kid" do
     expect(kid.bucket.id).to_not eq(nil)
   end
 
-  describe ".pig_out" do
+  describe "#pig_out" do
     before do
       @kid = Kid.create(:name => "Arel", :age => 14)
       @reeses = Candy.create(:name => "Reeses", :size => 2, :pieces => 2)

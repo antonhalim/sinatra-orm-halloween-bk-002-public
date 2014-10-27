@@ -24,7 +24,7 @@ describe "House" do
     expect(found_cottage.unclaimed_candies.count).to eq(2)
   end
 
-  it "puts the first unclaimed candy into a kid's bucket when given the kid" do
+  it "puts the first unclaimed candy into a kid's bucket" do
     expect(@kid.bucket.candies.count).to eq(0)
     expect(@cottage.candies[0].bucket_id).to eq(nil)
     @cottage.give_candy(@kid)
