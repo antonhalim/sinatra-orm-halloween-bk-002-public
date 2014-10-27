@@ -10,16 +10,28 @@ describe "House" do
     @kid.bucket = Bucket.new
     @cottage.candies << [@skittles, @milkyway, @redhots]
   end
+
   it "has an address" do
     expect(@cottage.address).to eq("132 Seabridge Ln")
   end
 
-  it "can be trick-or-treated at" do
+  it "knows what candy hasn't been distributed yet (candies where bucket_id is nil)" do
+    expect(@cottage.unclaimed_candies.count).to eq(3)
+
+    @cottage.candies.first.update(:bucket_id => 1)
+    
+    found_cottage = House.find_by(:address => "132 Seabridge Ln")
+    expect(found_cottage.unclaimed_candies.count).to eq(2)
+  end
+
+  it "puts the first unclaimed candy into a kid's bucket when given the kid" do
     expect(@kid.bucket.candies.count).to eq(0)
     expect(@cottage.candies[0].bucket_id).to eq(nil)
     @cottage.give_candy(@kid)
-    expect(@kid.bucket.candies.count).to eq(1)
-    expect(@cottage.candies[0].bucket_id).to eq(@kid.bucket.id)
+    found_kid = Kid.find_by(:name => "Arel")
+    found_cottage = House.find_by(:address => "132 Seabridge Ln")
+    expect(found_kid.bucket.candies.count).to eq(1)
+    expect(found_cottage.candies[0].bucket_id).to eq(@kid.bucket.id)
   end
 
   it "knows if a kid is too old to trick-or-treat" do
@@ -33,13 +45,9 @@ describe "House" do
   it "can give candy to a kid" do
     expect(@kid.bucket.candies.count).to eq(0)
     @cottage.give_candy(@kid)
-    expect(@kid.bucket.candies.count).to eq(1)
-    expect(@kid.bucket.candies).to include(@skittles || @milkyway || @redhots)
+    found_kid = Kid.find_by(:name => "Arel")
+    expect(found_kid.bucket.candies.count).to eq(1)
+    expect(found_kid.bucket.candies).to include(@skittles || @milkyway || @redhots)
   end
 
-  it "knows what candy hasn't been distributed yet" do
-    expect(@cottage.unclaimed_candies.count).to eq(3)
-    @cottage.give_candy(@kid)
-    expect(@cottage.unclaimed_candies.count).to eq(2)
-  end
 end
