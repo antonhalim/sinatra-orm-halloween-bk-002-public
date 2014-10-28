@@ -17,9 +17,12 @@
   <% end %>
 </ul>
 
-<p>Eat Candy</p>
+<p><strong>Eat Candy:</strong></p>
 <form action="/kids/<%= @kid.id %>/pig-out" method="POST">
   <label for="consumption">Amount</label>
   <input type="number" name="consumption">
   <button type="submit">Nom nom nom</button>
 </form>
+
+
+<a href="/houses">Go trick-or-treating</a>

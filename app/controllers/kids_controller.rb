@@ -6,7 +6,9 @@ class KidsController < HalloweenController
   end
 
   post "/kids" do
-    @kid = Kid.create(params[:kid])
+    @kid = Kid.new(params[:kid])
+    @kid.bucket = Bucket.new
+    @kid.save
     redirect "kids/#{@kid.id}"
   end
 

@@ -41,9 +41,8 @@ describe "Kid" do
 
     it "eats their candy" do
       @kid.pig_out(1)
-      found_kid = Kid.find_by(:name => "Arel")
-      expect(found_kid.feeling).to eq("Happy")
-      expect(found_kid.bucket.candies.count).to eq(4)
+      expect(@kid.feeling).to eq("Happy")
+      expect(@kid.bucket.candies.count).to eq(4)
     end
 
     it "gets sick if they eat too much" do
