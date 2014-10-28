@@ -39,13 +39,13 @@ describe "Kid" do
       @kid.bucket = @bucket 
     end
 
-    it "eats its candy" do
+    it "eats their candy" do
       @kid.pig_out(1)
       expect(@kid.feeling).to eq("Happy")
       expect(@kid.bucket.candies.count).to eq(4)
     end
 
-    it "gets sick if it eats too much" do
+    it "gets sick if they eat too much" do
       @kid.pig_out(4)
       expect(@kid.feeling).to eq("Sick")
       expect(@kid.bucket.candies.count).to eq(1)
