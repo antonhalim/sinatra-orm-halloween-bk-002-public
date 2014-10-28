@@ -9,6 +9,11 @@ class HousesController < HalloweenController
     erb :'houses/new'
   end
 
+  get '/houses/:id/edit' do
+    @house = House.find(params[:id])
+    erb :'houses/edit'
+  end
+
   get '/houses/:id' do
     @house = House.find(params[:id])
     erb :'houses/show'
@@ -18,6 +23,12 @@ class HousesController < HalloweenController
     @house = House.find(params[:id])
     @kid = Kid.find(params[:kid_id])
     @house.give_candy(@kid)
+    redirect "/houses/#{@house.id}"
+  end
+
+  post '/houses/:id' do
+    @house = House.find(params[:id])
+    @house.update(params["house"])
     redirect "/houses/#{@house.id}"
   end
 

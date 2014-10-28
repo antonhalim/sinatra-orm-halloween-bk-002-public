@@ -93,9 +93,6 @@ describe "HousesController" do
     end
   end
 
-  xit "bonus: write test for editing house and make it pass" do
-    pending
-  end
 
   describe "POST /houses/:id/trick-or-treat" do
     before do
@@ -116,6 +113,18 @@ describe "HousesController" do
     it "assigns a kid to the candy that was distributed" do
       expect(@tina.bucket.candies.count).to eq(1)
       expect(@tina.bucket.candies).to include(@redhots)
+    end
+  end
+
+  describe "PATCH /houses/:id" do
+    before do
+      @cottage = House.create(address: "321 N. Seaslide Nl.")
+      post "/houses/#{@cottage.id}", {:house => {:address => "123 S. Seaside Ln."}}
+      follow_redirect!
+    end
+    it "redirects to an updated house show page" do
+      expect(last_request.url).to eq("http://example.org/houses/#{@cottage.id}")
+      expect(last_response.body).to include("123 S. Seaside Ln.")
     end
   end
 end
