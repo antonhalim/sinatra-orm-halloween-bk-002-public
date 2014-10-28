@@ -119,7 +119,7 @@ describe "HousesController" do
   describe "PATCH /houses/:id" do
     before do
       @cottage = House.create(address: "321 N. Seaslide Nl.")
-      post "/houses/#{@cottage.id}", {:house => {:address => "123 S. Seaside Ln."}}
+      patch "/houses/#{@cottage.id}", {:house => {:address => "123 S. Seaside Ln."}}
       follow_redirect!
     end
     it "redirects to an updated house show page" do

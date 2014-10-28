@@ -12,7 +12,7 @@
 <h3>Candy Count: <%= @kid.bucket.candies.count %></h3>
 
 <ul>
-  <% @kid.bucket.candies.each do |c| %>
+  <% @kid.candies.each do |c| %>
     <li>Name: <%= c.name %></li>
   <% end %>
 </ul>
