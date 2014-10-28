@@ -1,3 +1,7 @@
 class CreateBuckets < ActiveRecord::Migration
-  # "Write your CreateBuckets migration here."
+  def change
+    create_table :buckets do |t|
+      t.integer :kid_id
+    end
+  end
 end

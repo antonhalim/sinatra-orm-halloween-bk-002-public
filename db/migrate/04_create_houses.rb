@@ -1,3 +1,7 @@
 class CreateHouses < ActiveRecord::Migration
-  # "Write your CreateHouses migration here."
+  def change
+    create_table :houses do |t|
+      t.string :address
+    end
+  end
 end

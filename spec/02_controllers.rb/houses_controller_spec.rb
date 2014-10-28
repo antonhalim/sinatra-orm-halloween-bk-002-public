@@ -65,6 +65,38 @@ describe "HousesController" do
     end
   end
 
+
+  describe "create a new house" do
+
+    describe "new form" do
+      it "responds with a 200 status code" do
+        get "/houses/new"
+        expect(last_response).to be_ok
+      end
+      it "should render a form for a new house" do
+        get "/houses/new"
+        expect(last_response.body).to include("<form action=\"/houses\" method=\"POST\"")
+        expect(last_response.body).to include("</form>")
+      end
+    end
+
+    describe "form post" do
+      before do
+        post "/houses", {:'house[address]' => "11 Broadway"}
+        
+        follow_redirect!  
+        @house = House.find_by(:address => "11 Broadway")
+      end
+      it "redirects to the houses's show page" do
+        expect(last_request.url).to eq("http://example.org/houses/#{@house.id}")
+      end
+    end
+  end
+
+  xit "bonus: write test for editing house and make it pass" do
+    pending
+  end
+
   describe "POST /houses/:id/trick-or-treat" do
     before do
       @cottage = House.create(address: "123 S. Seaside Ln.")
@@ -85,13 +117,5 @@ describe "HousesController" do
       expect(@tina.bucket.candies.count).to eq(1)
       expect(@tina.bucket.candies).to include(@redhots)
     end
-  end
-
-  xit "bonus: write test for adding house and make it pass" do
-    pending
-  end
-
-  xit "bonus: write test for editing house and make it pass" do
-    pending
   end
 end

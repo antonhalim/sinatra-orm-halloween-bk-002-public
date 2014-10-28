@@ -20,6 +20,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     bond (0.5.1)
     builder (3.2.2)
@@ -29,6 +30,8 @@ GEM
     eventmachine (1.0.3)
     i18n (0.6.9)
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     method_source (0.8.2)
     minitest (5.3.5)
     pry (0.10.0)
@@ -92,6 +95,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   database_cleaner!
+  launchy
   pry
   rack-test
   rake

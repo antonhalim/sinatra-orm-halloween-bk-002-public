@@ -1,3 +1,9 @@
 class CreateKids < ActiveRecord::Migration
-  # "Write your CreateKids migration here."
+  def change
+    create_table :kids do |t|
+      t.string :name
+      t.integer :age
+      t.string :feeling
+    end
+  end
 end

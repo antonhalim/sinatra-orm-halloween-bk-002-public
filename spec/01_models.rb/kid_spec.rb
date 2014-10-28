@@ -27,7 +27,7 @@ describe "Kid" do
   end
 
   describe "#pig_out" do
-    before do
+    before(:each) do
       @kid = Kid.create(:name => "Arel", :age => 14)
       @reeses = Candy.create(:name => "Reeses", :size => 2, :pieces => 2)
       @m_m = Candy.create(:name => "M&Ms", :size => 3, :pieces => 20)
@@ -41,14 +41,16 @@ describe "Kid" do
 
     it "eats their candy" do
       @kid.pig_out(1)
-      expect(@kid.feeling).to eq("Happy")
-      expect(@kid.bucket.candies.count).to eq(4)
+      found_kid = Kid.find_by(:name => "Arel")
+      expect(found_kid.feeling).to eq("Happy")
+      expect(found_kid.bucket.candies.count).to eq(4)
     end
 
     it "gets sick if they eat too much" do
       @kid.pig_out(4)
-      expect(@kid.feeling).to eq("Sick")
-      expect(@kid.bucket.candies.count).to eq(1)
+      found_kid = Kid.find_by(:name => "Arel")
+      expect(found_kid.feeling).to eq("Sick")
+      expect(found_kid.bucket.candies.count).to eq(1)
     end
   end
 end
