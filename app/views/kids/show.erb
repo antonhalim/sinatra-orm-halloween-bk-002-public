@@ -1,0 +1,25 @@
+<h1><%= @kid.name %></h1>
+
+<% if @kid.feeling.nil? %>
+  <p>Feeling: meh</p>
+<% else %>
+  <p>Feeling: <%= @kid.feeling %></p>
+<% end %>
+
+<h3>Age: <%= @kid.age %></h3>
+
+
+<h3>Candy Count: <%= @kid.bucket.candies.count %></h3>
+
+<ul>
+  <% @kid.bucket.candies.each do |c| %>
+    <li>Name: <%= c.name %></li>
+  <% end %>
+</ul>
+
+<p>Eat Candy</p>
+<form action="/kids/<%= @kid.id %>/pig-out" method="POST">
+  <label for="consumption">Amount</label>
+  <input type="number" name="consumption">
+  <button type="submit">Nom nom nom</button>
+</form>
