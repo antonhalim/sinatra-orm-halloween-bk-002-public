@@ -28,7 +28,7 @@ class HousesController < HalloweenController
     end
   end
 
-  post "/houses/:id/trick-or-treat" do
+  patch "/houses/:id/trick-or-treat" do
     @house = House.find(params[:id])
     @kid = Kid.find(params[:kid_id])
     @house.give_candy(@kid)

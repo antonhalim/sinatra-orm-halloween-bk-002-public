@@ -94,14 +94,28 @@ describe "HousesController" do
   end
 
 
-  describe "POST /houses/:id/trick-or-treat" do
+  describe "PATCH /houses/:id/trick-or-treat" do
     before do
+      # make avi
+      avi = Kid.create(:name => "Avi", :age => 8)
+      @avis_bucket = Bucket.create(:kid_id => avi.id)
+      
+      # make cottage and candies
       @cottage = House.create(address: "123 S. Seaside Ln.")
-      @redhots = Candy.create(:name => "Redhots", :size => 2, :pieces => 10)
-      @cottage.candies << @redhots
-      @tina = Kid.create(:name => "Tina Fey", :age => 12)
-      @tina.bucket = Bucket.create
-      post "/houses/#{@cottage.id}/trick-or-treat", {:kid_id => @tina.id}
+      @redhots = Candy.create(:name => "Redhots", :size => 2, :pieces => 10, :house_id => @cottage.id)
+      @hersheys = Candy.create(:name => "Hersheys", :size => 1, :pieces => 2, :house_id => @cottage.id, :bucket_id => @avis_bucket.id)
+      @sourpatch = Candy.create(:name => "Sourpatch", :size => 3, :pieces => 20, :house_id => @cottage.id)
+     
+      # make Tina
+      @tina = Kid.create(:name => "Tina", :age => 12)
+      Bucket.create(:kid_id => @tina.id)
+
+      # make mindy
+      @mindy = Kid.create(:name => "Mindy", :age => 10)
+      Bucket.create(:kid_id => @mindy.id)
+
+      # make tina trick-or-treat
+      patch "/houses/#{@cottage.id}/trick-or-treat", {:kid_id => @tina.id}
       follow_redirect!
     end
     it "redirects to the house's show page" do
@@ -113,6 +127,14 @@ describe "HousesController" do
     it "assigns a kid to the candy that was distributed" do
       expect(@tina.bucket.candies.count).to eq(1)
       expect(@tina.bucket.candies).to include(@redhots)
+    end
+    it "does not reassign candy (only gives out unclaimed candy)" do
+      original_num_of_candies = @mindy.bucket.candies.count
+      patch "/houses/#{@cottage.id}/trick-or-treat", {:kid_id => @mindy.id}
+      follow_redirect!
+      expect(@mindy.bucket.candies).to_not include(@hersheys)
+      expect(@mindy.bucket.candies).to include(@sourpatch)
+      expect(@mindy.bucket.candies.count).to eq(original_num_of_candies + 1)
     end
   end
 
