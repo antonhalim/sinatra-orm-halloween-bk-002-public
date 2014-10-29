@@ -1,12 +1,3 @@
 <h1>All Houses</h1>
 
-<ul>
-  <% @houses.each do |h| %>
-    <li><a href="houses/<%= h.id %>"><%= h.address %></a></li>
-      <ul>
-        <% h.unclaimed_candies.each do |c| %>
-          <li><%= c.name %></li>
-        <% end %>
-      </ul>
-  <% end %>
-</ul>
+<!-- iterate through houses and their candies here -->

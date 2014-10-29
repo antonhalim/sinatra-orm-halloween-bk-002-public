@@ -1,7 +1,5 @@
 class CreateHouses < ActiveRecord::Migration
   def change
-    create_table :houses do |t|
-      t.string :address
-    end
+    # create table here
   end
 end
