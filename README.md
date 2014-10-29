@@ -37,7 +37,11 @@ The kids each have one bucket, buckets have a lot of candy. Houses also have a l
 
 ## Patch Example
 
-Here's an example of a form using PATCH to update a dog (`@dog`).
+Here's an example of a form using PATCH to update a dog (`@dog`). Remeber, the name creates the keys in the params, the type tells the form whether to render a text box, a number field, etc. The value autofills the text boxes, etc.
+
+The form's action points to the url the patch request should hit. The hidden input field with `value="patch"` transforms what looks like a form that posts into a form that patches.
+
+The `use Rack::MethodOverride` code needed to use patches in Sinatra has already been added to your `config.ru` file.
 
 ```html
 <!-- http://localhost:9292/dogs/7/edit -->
@@ -49,7 +53,7 @@ Here's an example of a form using PATCH to update a dog (`@dog`).
   <input name="dog[name]" type="text" value="<%= @dog.name %>" /><br />
 
   <label>Age</label>:
-  <input id="person_last_name" name="dog[age]" type="number" value="<%= @dog.age %>" /><br />
+  <input name="dog[age]" type="number" value="<%= @dog.age %>" /><br />
 
   <button type="submit">"Update Dog"</button>
 </form>
