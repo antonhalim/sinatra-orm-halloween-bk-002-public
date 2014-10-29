@@ -82,7 +82,7 @@ describe "KidsController" do
       expect(last_request.url).to eq("http://example.org/kids/#{@kid.id}")
     end
   end
-  describe "POST /kids/:id/pig-out" do 
+  describe "PATCH /kids/:id/pig-out" do 
     before do
       # candies
       @sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
@@ -93,7 +93,7 @@ describe "KidsController" do
       @mindy = Kid.create(:name => "Mindy Kaling", :age => 12)
       @mindy.bucket = Bucket.create
       @mindy.bucket.candies << [@sourpatch, @milkyway, @redhots, @reeses]
-      post "/kids/#{@mindy.id}/pig-out", {:consumption => 4}
+      patch "/kids/#{@mindy.id}/pig-out", {:consumption => 4}
       follow_redirect!  
     end
     it "redirects to the kids's show page" do

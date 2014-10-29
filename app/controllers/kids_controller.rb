@@ -20,7 +20,7 @@ class KidsController < HalloweenController
     redirect "/kids/#{@kid.id}"
   end
 
-  post "/kids/:id/pig-out" do
+  patch "/kids/:id/pig-out" do
     @kid = Kid.find(params[:id])
     num_of_candies = params[:consumption].to_i
     @kid.pig_out(num_of_candies)
