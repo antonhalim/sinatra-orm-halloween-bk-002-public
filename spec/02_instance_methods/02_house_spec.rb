@@ -4,9 +4,9 @@ describe "House - Instance Methods" do
 
   let(:cottage) { House.create(:address=>"132 Seabridge Ln") }
 
-  let(:kid) { Kid.create(:name=>"Kristin", :age => 12 }
-  let(:ali) { Kid.create(:name=>"Ali", :age => 8 }
-  let(:adult) { Kid.create(:name=>"Spencer", :age => 18 }
+  let(:kid) { Kid.create(:name => "Kristin", :age => 12) }
+  let(:ali) { Kid.create(:name => "Ali", :age => 8) }
+  let(:adult) { Kid.create(:name => "Spencer", :age => 18) }
 
   let(:claimed_candies) {
     [
@@ -36,7 +36,6 @@ describe "House - Instance Methods" do
 
     unclaimed_candies.each do |candy_hash|
       candy_hash[:house_id] = cottage.id
-      candy_hash[:bucket_id] = alis_bucket.id
       Candy.create(candy_hash)
     end
   end
@@ -56,7 +55,7 @@ describe "House - Instance Methods" do
   describe "#give_candy" do
 
     it "accepts one argument, the kid that is trick-or-treating" do
-      expect { cottage.give_candy(kid) }.to_not raise_error(ArgumentError)
+      expect { cottage.give_candy(kid) }.not_to raise_error
     end
 
     it "returns 'Happy Halloween!' if a kid is younger than 18" do
@@ -94,7 +93,7 @@ describe "House - Instance Methods" do
       cottage.give_candy(kid)
 
       found_cottage = House.find_by(:address => "132 Seabridge Ln")
-      first_unclaimed_candy.reload!
+      first_unclaimed_candy.reload
       expect(first_unclaimed_candy.bucket_id).to eq(kid.bucket.id)
       expect(found_cottage.unclaimed_candies.count).to eq(cottage_num_of_unclaimed_candies - 1)
     end
