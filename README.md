@@ -4,7 +4,7 @@ languages: ruby
 resources: 2
 ---
 
-# Trick-Or-Treating App
+# Trick-Or-Treating App :jack_o_lantern: :ghost:
 
 This year you're giving out virtual candy, which doesn't taste great, but it also keeps kids lean and fit so they can outrun the rising tides from global warming.
 
