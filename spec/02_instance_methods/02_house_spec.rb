@@ -30,7 +30,7 @@ describe "House - Instance Methods" do
 
     claimed_candies.each do |candy_hash|
       candy_hash[:house_id] = cottage.id
-      candy_hash[:bucket_id] = cottage.id
+      candy_hash[:bucket_id] = alis_bucket.id
       Candy.create(candy_hash)
     end
 
