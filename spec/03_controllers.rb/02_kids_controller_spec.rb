@@ -7,7 +7,7 @@ describe "KidsController" do
       @mindy.bucket = Bucket.create
       @tina = Kid.create(:name => "Tina Fey", :age => 12)
       @tina.bucket = Bucket.create
-      get "/kids"   
+      get "/kids"
     end
     it "responds with a 200 status code" do
       expect(last_response).to be_ok
@@ -17,7 +17,7 @@ describe "KidsController" do
       expect(last_response.body).to include("<li><a href=\"/kids/#{@tina.id}\">#{@tina.name}</a></li>")
     end
   end
-  describe "GET /kids/new" do 
+  describe "GET /kids/new" do
     before do
       get "/kids/new"
     end
@@ -30,8 +30,8 @@ describe "KidsController" do
     end
   end
 
-  describe "GET /kids/:id" do 
-    before do 
+  describe "GET /kids/:id" do
+    before do
       @sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
       @milkyway = Candy.create(:name => "Milkyway", :size => 2, :pieces => 2)
       @mindy = Kid.create(:name => "Mindy Kaling", :age => 12)
@@ -46,7 +46,7 @@ describe "KidsController" do
       expect(last_response.body).to include("Mindy Kaling")
       expect(last_response.body).to include("12")
     end
-    it "counts the candy in the kid's bucket" do 
+    it "counts the candy in the kid's bucket" do
       expect(last_response.body).to include("<h3>Candy Count: 2</h3>")
     end
     it "lists the candies that is in the kid's bucket" do
@@ -61,8 +61,8 @@ describe "KidsController" do
     end
   end
 
-  describe "GET /kids/:id" do 
-    before do 
+  describe "GET /kids/:id" do
+    before do
       @mindy = Kid.create(:name => "Mindy Kaling", :age => 12, :feeling => "Sick")
       @mindy.bucket = Bucket.create
       get "/kids/#{@mindy.id}"
@@ -72,17 +72,17 @@ describe "KidsController" do
     end
   end
 
-  describe "POST /kids" do 
+  describe "POST /kids" do
     before do
       post "/kids", {:'kid[name]' => "Tina Fey", :'kid[age]' => 9}
       @kid = Kid.find_by(:name => "Tina Fey")
-      follow_redirect!  
+      follow_redirect!
     end
     it "redirects to the kids's show page" do
       expect(last_request.url).to eq("http://example.org/kids/#{@kid.id}")
     end
   end
-  describe "PATCH /kids/:id/pig-out" do 
+  describe "PATCH /kids/:id/pig-out" do
     before do
       # candies
       @sourpatch = Candy.create(:name => "Sour Patch Kids", :size => 3, :pieces => 15)
@@ -94,7 +94,7 @@ describe "KidsController" do
       @mindy.bucket = Bucket.create
       @mindy.bucket.candies << [@sourpatch, @milkyway, @redhots, @reeses]
       patch "/kids/#{@mindy.id}/pig-out", {:consumption => 4}
-      follow_redirect!  
+      follow_redirect!
     end
     it "redirects to the kids's show page" do
       expect(last_request.url).to eq("http://example.org/kids/#{@mindy.id}")
@@ -108,7 +108,7 @@ describe "KidsController" do
       expect(last_response.body).to_not include(@redhots.name)
       expect(last_response.body).to_not include(@reeses.name)
     end
-    it "changes feeling based on candy consumption" do 
+    it "changes feeling based on candy consumption" do
       expect(last_response.body).to include("<p>Feeling: Sick</p>")
     end
   end

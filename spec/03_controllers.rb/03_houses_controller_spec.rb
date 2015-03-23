@@ -14,7 +14,7 @@ describe "HousesController" do
       @mindy = Kid.create(:name => "Mindy Kaling", :age => 12)
       @mindy.bucket = Bucket.create
       @mindy.bucket.candies << @sourpatch
-      @cottage.candies << [@redhots, @twix, @mints, @sourpatch] 
+      @cottage.candies << [@redhots, @twix, @mints, @sourpatch]
       @mansion.candies << [@skittles, @milkyway]
       get '/houses'
     end
@@ -83,8 +83,8 @@ describe "HousesController" do
     describe "form post" do
       before do
         post "/houses", {:'house[address]' => "11 Broadway"}
-        
-        follow_redirect!  
+
+        follow_redirect!
         @house = House.find_by(:address => "11 Broadway")
       end
       it "redirects to the houses's show page" do
@@ -99,13 +99,13 @@ describe "HousesController" do
       # make avi
       avi = Kid.create(:name => "Avi", :age => 8)
       @avis_bucket = Bucket.create(:kid_id => avi.id)
-      
+
       # make cottage and candies
       @cottage = House.create(address: "123 S. Seaside Ln.")
       @redhots = Candy.create(:name => "Redhots", :size => 2, :pieces => 10, :house_id => @cottage.id)
       @hersheys = Candy.create(:name => "Hersheys", :size => 1, :pieces => 2, :house_id => @cottage.id, :bucket_id => @avis_bucket.id)
       @sourpatch = Candy.create(:name => "Sourpatch", :size => 3, :pieces => 20, :house_id => @cottage.id)
-     
+
       # make Tina
       @tina = Kid.create(:name => "Tina", :age => 12)
       Bucket.create(:kid_id => @tina.id)

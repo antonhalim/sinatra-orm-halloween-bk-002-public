@@ -1,4 +1,5 @@
 <h1>All Kids</h1>
 
-<!-- iterate through all kids here -->
-<!-- remember to link their names to their show pages -->
+<% Kid.all.each do |kid| %>
+<li><a href="/kids/<%= kid.id %>"><%= kid.name %></a></li>
+<% end %>

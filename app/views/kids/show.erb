@@ -1,19 +1,17 @@
 <h1>Kid show page</h1>
 
-<!-- display their feeling, their age, and their name -->
+<p>Name   : <%= @kid.name %></p>
+<p>Age    : <%= @kid.age %></p>
+<p>Feeling: <%= @kid.feeling %></p>
 
 
-<h3>Candy Count: <!-- count the number of candies they have here --></h3>
+  <h3>Candy Count: <%= @kid.candies.count %></h3>
+  <% @kid.candies.each do |candy| %>
+    <ul><li>Name: <%= candy.name %></li></ul>
+  <% end %>
 
-<!-- iterate through their candies here such that it could look like:
-<ul>
-  <li>Name: Skittles</li>
-  <li>Name: Redhots</li>
-</ul> -->
-
-
-<!-- code the form that will send a patch to "/kids/:id/pig-out"
-give it a consumption key with a value of number of candies to eat 
-type="number" is probably better than type="text" -->
-
-<!-- puts a link to the houses index page here and call the link "Go trick-or-treating" -->
+  <form action="/kids/<%= @kid.id %>/pig-out" method="POST">
+    <input type="hidden" name="_method" value="patch">
+    <input type="number" name="consumption" value="">
+    <button type="submit" name="">Submit</button>
+  </form>

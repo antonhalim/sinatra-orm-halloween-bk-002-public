@@ -1,3 +1,9 @@
 <h1>All Houses</h1>
 
 <!-- iterate through houses and their candies here -->
+<% House.all.each do |house| %>
+	<li><a href="/houses/<%= house.id %>"><%= house.address %></a></li>
+	<% house.unclaimed_candies.each do |candy| %>
+		<li>Unclaimed Candy: <%= candy.name %></li>
+	<% end %>
+<% end %>
